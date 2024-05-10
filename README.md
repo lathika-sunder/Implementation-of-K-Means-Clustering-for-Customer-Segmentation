@@ -1,20 +1,20 @@
-# Implementation-of-K-Means-Clustering-for-Customer-Segmentation
-
-## AIM:
+## Implementation-of-K-Means-Clustering-for-Customer-Segmentation
+### DATE:02.04.2024
+### AIM:
 To write a program to implement the K Means Clustering for Customer Segmentation.
 
-## Equipments Required:
+### Equipments Required:
 1. Hardware – PCs
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
-## Algorithm
+### Algorithm
 1. Import the necessary  packages 
 2. Insert the dataset to perform the k - means clustering
 3. perform k - means clustering on the dataset 
 4. Then print the centroids and labels 
 5. Plot graph and display the clusters 
 
-## Program:
+### Program:
 ```
 Program to implement the K Means Clustering for Customer Segmentation.
 Developed by: PAVANA.G
@@ -63,12 +63,12 @@ plt.grid(True)
 plt.axis("equal")
 plt.show()
 ```
-## Output:
+### Output:
 - INSERTED DATASET:
 ![image](https://github.com/gpavana/Implementation-of-K-Means-Clustering-for-Customer-Segmentation/assets/118787343/30c21ad5-6165-443a-9c72-0619abd15d2f)
 - CENTROID AND LABEL VALUES:
 ![image](https://github.com/gpavana/Implementation-of-K-Means-Clustering-for-Customer-Segmentation/assets/118787343/e569502b-a75e-40bb-9183-af84a64e61b1)
 - CLUSTERING:
 ![image](https://github.com/gpavana/Implementation-of-K-Means-Clustering-for-Customer-Segmentation/assets/118787343/6a0de927-a165-43f3-a5af-999dd3b9cd2b)
-## Result:
+### Result:
 Thus the program to implement the K Means Clustering for Customer Segmentation is written and verified using python programming.
