@@ -1,106 +1,74 @@
-# Implementation-of-Logistic-Regression-Model-to-Predict-the-Placement-Status-of-Student
+## Implementation-of-K-Means-Clustering-for-Customer-Segmentation
+### DATE:02.04.2024
+### AIM:
+To write a program to implement the K Means Clustering for Customer Segmentation.
 
-## AIM:
-To write a program to implement the the Logistic Regression Model to Predict the Placement Status of Student.
-
-## Equipments Required:
+### Equipments Required:
 1. Hardware – PCs
-2. Anaconda – Python 3.7 Installation / Moodle-Code Runner
+2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
-## Algorithm
-1. Import the standard libraries.
-2. Upload the dataset and check for any null or duplicated values using .isnull() and .duplicated() function respectively.
-3. Import LabelEncoder and encode the dataset.
-4. Import LogisticRegression from sklearn and apply the model on the dataset.
-5. Predict the values of array.
-6. Calculate the accuracy, confusion and classification report by importing the required modules from sklearn.
-7. Apply new unknown values
+### Algorithm
+1. Import the necessary  packages 
+2. Insert the dataset to perform the k - means clustering
+3. perform k - means clustering on the dataset 
+4. Then print the centroids and labels 
+5. Plot graph and display the clusters 
 
-## Program:
+### Program:
 ```
-/*
-Program to implement the the Logistic Regression Model to Predict the Placement Status of Student.
-Developed by: Lathika Sunder
-RegisterNumber: 212221230054
-*/
+Program to implement the K Means Clustering for Customer Segmentation.
+Developed by:Lathika Sunder
+RegisterNumber:212221230054
+```
+```python
 import pandas as pd
-data=pd.read_csv('Placement_Data.csv')
-data.head()
+import numpy as np
+from sklearn.cluster import KMeans
+from sklearn.metrics.pairwise import euclidean_distances
+import matplotlib.pyplot as plt
+data=pd.read_csv("/content/Mall_Customers_EX8.csv")
+data
+X=data[["Annual Income (k$)","Spending Score (1-100)"]]
+X
+plt.figure(figsize=(4,4))
+plt.scatter(data["Annual Income (k$)"],data["Spending Score (1-100)"])
+plt.xlabel("Annual Income (k$)")
+plt.ylabel("Spending Score (1-100)")
+plt.show()
+k =5
+kmeans=KMeans(n_clusters=k)
+kmeans.fit(X)
+centroids = kmeans.cluster_centers_
+labels=kmeans.labels_
+print("Centroids:")
+print(centroids)
+print("Labels:")
+print(labels)
+colors=['r','g','b','c','m']
+for i in range(k):
+  cluster_points = X[labels==i]
+  plt.scatter(cluster_points["Annual Income (k$)"],cluster_points["Spending Score (1-100)"],
+              color=colors[i],label=f'Cluster{i+1}')
+  distances=euclidean_distances(cluster_points,[centroids[i]])
+  radius=np.max(distances)
+  circle=plt.Circle(centroids[i],radius,color=colors[i],fill=False)
+  plt.gca().add_patch(circle)
 
-data1=data.copy()
-data1 = data1.drop(["sl_no","salary"],axis = 1)
-data1.head()
-
-data1.isnull().sum()
-
-data1.duplicated().sum()
-
-from sklearn.preprocessing import LabelEncoder
-le=LabelEncoder()
-data1["gender"] = le.fit_transform(data1["gender"])
-data1["ssc_b"] = le.fit_transform(data1["ssc_b"])
-data1["hsc_b"] = le.fit_transform(data1["hsc_b"])
-data1["hsc_s"] = le.fit_transform(data1["hsc_s"])
-data1["degree_t"] = le.fit_transform(data1["degree_t"])
-data1["workex"] = le.fit_transform(data1["workex"])
-data1["specialisation"] = le.fit_transform(data1["specialisation"])
-data1["status"] = le.fit_transform(data1["status"])
-data1
-
-x=data1.iloc[:,:-1]
-x
-
-y=data1["status"]
-y
-
-from sklearn.model_selection import train_test_split
-x_train,x_test,y_train,y_test = train_test_split(x,y,test_size = 0.2,random_state = 0)
-from sklearn.linear_model import LogisticRegression
-lr = LogisticRegression(solver = "liblinear") 
-lr.fit(x_train,y_train)
-y_pred = lr.predict(x_test)
-y_pred
-
-from sklearn.metrics import accuracy_score
-accuracy = accuracy_score(y_test,y_pred)
-accuracy
-
-from sklearn.metrics import confusion_matrix
-confusion = confusion_matrix(y_test,y_pred)
-confusion
-
-from sklearn.metrics import classification_report
-classification_report1 = classification_report(y_test,y_pred)
-print(classification_report1)
-
-lr.predict([[1,80,1,90,1,1,90,1,0,85,1,85]])
+plt.scatter(centroids[:,0],centroids[:,1],marker="*",s=200,color='k',label='Centroids')
+plt.title("K- means Clustering")
+plt.xlabel("Annual Incme (k$)")
+plt.ylabel("Spending Score (1-100)")
+plt.legend()
+plt.grid(True)
+plt.axis("equal")
+plt.show()
 ```
-
-## Output:
-## Original data(first five columns):
-![](o1.png)
-## Data after dropping unwanted columns(first five):
-![](o2.png)
-## Checking the presence of null values:
-![](o3.png)
-## Checking the presence of duplicated values:
-![](o4.png)
-## Data after Encoding:
-![](o5.png)
-## X Data:
-![](o6.png)
-## Y Data:
-![](o7.png)
-## Predicted Values:
-![](o8.png)
-## Accuracy Score:
-![](o9.png)
-## Confusion Matrix:
-![](o10.png)
-## Classification Report:
-![](o11.png)
-## Predicting output from Regression Model:
-![](o12.png)
-
-## Result:
-Thus the program to implement the the Logistic Regression Model to Predict the Placement Status of Student is written and verified using python programming.
+### Output:
+- INSERTED DATASET:
+![image](https://github.com/gpavana/Implementation-of-K-Means-Clustering-for-Customer-Segmentation/assets/118787343/30c21ad5-6165-443a-9c72-0619abd15d2f)
+- CENTROID AND LABEL VALUES:
+![image](https://github.com/gpavana/Implementation-of-K-Means-Clustering-for-Customer-Segmentation/assets/118787343/e569502b-a75e-40bb-9183-af84a64e61b1)
+- CLUSTERING:
+![image](https://github.com/gpavana/Implementation-of-K-Means-Clustering-for-Customer-Segmentation/assets/118787343/6a0de927-a165-43f3-a5af-999dd3b9cd2b)
+### Result:
+Thus the program to implement the K Means Clustering for Customer Segmentation is written and verified using python programming.
